@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 Route::get('/persona', 'App\Http\Controllers\PersonaController@index');
 Route::get('/inicio', 'App\Http\Controllers\InicioController@index');
+Route::resource('/articulos', 'App\Http\Controllers\ArticuloController');
 //ejemplo 1 - regresando texto
 Route::get('/texto', function () {
     return '<h1>esto es un texto de prueba</h1>';

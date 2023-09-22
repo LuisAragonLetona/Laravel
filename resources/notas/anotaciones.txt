@@ -63,4 +63,7 @@ php artisan make:model Persona
 luego creamos un controlador para ese modelo
 php artisan make:controller PersonaController --resource
 Ahora dentro del controlador hacemos referencia a el modelo
-
+Para CRUD
+Creamos un modelo
+php artisan make:model Articulo -m
+php artisan make:controller ArticuloController --resource
