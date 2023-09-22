@@ -1,0 +1,66 @@
+composer self-update
+composer create-project laravel/laravel example-app
+la segunda opción:
+	composer global require laravel/installer
+	laravel new applaravel
+Laravel JetStream
+para incluirlo debemos crear el proyecto laravel y al final poner --jet (no se recomienda instalar Jetstream por separado)
+livewire: trabaja con el motor de plantillas integrado Blave (usaremos este para este ejemplo)
+inercia: nos ofrece trabajar con Vue js
+mysql -u root -p (admin)
+php artisan migrate
+app/providers/AppServiceProvider.php
+use Illuminate\Support\Facades\Schema;
+public function boot(): void
+    {
+        Schema::defaultStringLength(191);
+        //
+    }
+
+en routes/web.php se manejan las rutas
+//ejemplo 1 - regresando texto
+Route::get('/texto', function(){
+return '<h1>esto es un texto de prueba</h1>';
+});
+//ejemplo 2 - con array
+Route::get('/arreglo', function(){
+$arreglo = ['lunes', 'martes', 'miercoles'];
+return $arreglo;
+});
+// arreglo asociativo
+Route::get('/arreglo', function(){
+$arreglo = [
+'Id' => '1',
+'Descripcion' => 'Producto 1'
+1:
+return $arreglo;
+});
+//ejemplo 3 - parámetros
+Route::get('/nombre/{nombre}', function($nombre){
+return '<h1>El nombre es: '.$nombre. '</h1>';
+});
+//ejemplo 4 - parametros por default
+Route::get('/cliente/{cliente?}', function($cliente='Cliente general'){ return '<h1>El Cliente es: '.$cliente.'</h1>';
+para verificar rutas usar fachadas en web.php
+use Illuminate\Support\Facades\View;
+para crear un controlador usamos el siguiente comando (el nombre del controlador debe ser CamelCase)
+php artisan make:controller InicioController
+dentro del controlador podemos solicitar parametros
+public function index(Request $peticion) {
+        $arreglo = ['nombre' => $peticion->query('nombre', 'NN')];
+        return view('vista2')->with($arreglo);
+    }
+Para poner un parametro al controlador:
+http://127.0.0.1:8000/inicio?nombre=Luis
+para crear un controlador con toda la lógica de un CRUD:
+php artisan make:controller CrudController --resource
+si intentamos migrar nuevamente nos aparecerá que no hay nada para migrar
+php artisan migrate
+para crear una nueva tabla, el nombre se recomienda escribirlo en plural
+php artisan make:migration create_clientes_table
+para crear un modelo ejecutamos el siguiente comando (El nombre debe empezar en Mayúsculas y ser singular)
+php artisan make:model Persona
+luego creamos un controlador para ese modelo
+php artisan make:controller PersonaController --resource
+Ahora dentro del controlador hacemos referencia a el modelo
+
